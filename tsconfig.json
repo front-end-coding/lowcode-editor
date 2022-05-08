@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "ES2017",
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "paths": {
+      "@lc/*": [
+        "./packages/*/src/"
+      ]
+    }
+  },
+  "include": [
+    "apps/**/src/**/*",
+    "packages/**/src/**/*",
+  ]
+  // "exclude": [
+  //   "node_modules",
+  //   "dist"
+  // ]
+}

@@ -1,0 +1,16 @@
+{
+  "name": "editor",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@lc/shared": "workspace:^1.0.0",
+    "vue": "^3.2.33"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/xyguo12395/Desktop/lowcode-editor"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "lowcode-editor",
+      "private": true
+    },
+    "prefix": "/Users/xyguo12395/Desktop/lowcode-editor"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/Users/xyguo12395/.pnpm-store/v3",
+    "virtualStoreDir": "/Users/xyguo12395/Desktop/lowcode-editor/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/Users/xyguo12395/Desktop/lowcode-editor",
+    "stage": "resolution_started"
+  },
+  "4 error pnpm": {
+    "code": "ERR_PNPM_FETCH_404",
+    "hint": "@typescript-eslint/parse is not in the npm registry, or you have no permission to fetch it.\n\nNo authorization header was set for the request.",
+    "request": {
+      "url": "https://registry.npm.taobao.org/@typescript-eslint%2Fparse"
+    },
+    "response": {
+      "size": 0
+    },
+    "pkgName": "@typescript-eslint/parse",
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "GET https://registry.npm.taobao.org/@typescript-eslint%2Fparse: Not Found - 404",
+      "code": "ERR_PNPM_FETCH_404",
+      "stack": "pnpm: GET https://registry.npm.taobao.org/@typescript-eslint%2Fparse: Not Found - 404\n    at RetryOperation._fn (/Users/xyguo12395/.nvm/versions/node/v14.17.2/lib/node_modules/pnpm/dist/pnpm.cjs:85374:19)\n    at processTicksAndRejections (internal/process/task_queues.js:95:5)"
+    }
+  }
+}
