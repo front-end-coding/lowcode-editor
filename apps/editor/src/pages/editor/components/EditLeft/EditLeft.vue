@@ -6,8 +6,6 @@
     edit-left
   </div>  
 </template>
-
-
 <style scoped>
 
 </style>
