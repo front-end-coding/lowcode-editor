@@ -1,16 +1,16 @@
 {
   "name": "editor",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@lc/shared": "workspace:^1.0.0",
-    "vue": "^3.2.33"
+    "@lc2048/shared": "workspace:^0.0.1",
+    "vue-router": "^4.0.15"
   }
 }

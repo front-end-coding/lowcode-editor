@@ -1,27 +1,25 @@
 {
-  "name": "@lc2048/shared",
+  "name": "@lc2048/lc-image",
   "version": "0.0.1",
   "description": "",
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
+      "import" : "./dist/index.mjs",
       "require": "./dist/index.cjs"
     }
-  },
-  "publishConfig": {
-    "access": "public"
   },
   "files": [
     "dist"
   ],
-  "scripts": {
-    "build": "unbuild",
-    "stub": "unbuild --stub",
-    "test": "vitest"
+  "publishConfig": {
+    "access": "public"
   },
-  "keywords": [],
+  "scripts": {
+    "build": "vite build"
+  },
   "author": "",
   "license": "MIT"
 }

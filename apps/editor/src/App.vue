@@ -1,10 +1,9 @@
 <script setup lang="ts">
-const a = ''
-
+  import BasicLayoutVue from './components/BasicLayout/BasicLayout.vue';
 </script>
 <template>
-  <h1>
-    app
-  </h1>
+  <BasicLayoutVue>
+    <router-view />
+  </BasicLayoutVue>
 </template>
 

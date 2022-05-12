@@ -1,4 +1,5 @@
 const { defineConfig } = require('eslint-define-config')
+
 module.exports = defineConfig({
   env: {
     es6: true
@@ -16,7 +17,10 @@ module.exports = defineConfig({
       parserOptions: {
         parser: '@typescript-eslint/parser'
       },
-      extends: ['plugin:vue/vue3-recommended']
+      extends: ['plugin:vue/vue3-recommended'],
+      rules: {
+        'vue/multi-word-component-names': 0,
+      },
     }
   ]
 })
