@@ -1,24 +1,9 @@
 {
   "compilerOptions": {
     "module": "esnext",
-    "target": "ES2017",
+    "target": "es2017",
     "resolveJsonModule": true,
     "moduleResolution": "node",
-    "baseUrl": ".",
-    "jsx": "preserve",
-    "paths": {
-      "@lc2048/*": [
-        "./packages/*/src/"
-      ]
-    }
+    "jsx": "preserve"
   },
-  "include": [
-    "apps/**/src/**/*",
-    "packages/**/src/**/*",
-    "packages/shared/vitest.config.ts",
-  ]
-  // "exclude": [
-  //   "node_modules",
-  //   "dist"
-  // ]
 }

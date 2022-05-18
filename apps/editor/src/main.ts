@@ -1,30 +1,10 @@
 import { createApp } from 'vue';
 import App from './App.vue';
-import { IMaterial } from '@lc2048/shared'
 import { loadScript } from './utils';
 import { router } from './router'
 import './main.less'
+import { materialList } from './data'
 
-
-// 这里是左侧物料列表
-const materialList: IMaterial[] = [{
-  id: 1,
-  name: 'lcImage',
-  title: '图片',
-  type: 'component',
-  categoty: {
-    name: '基础组件'
-  },
-  version: '0.0.1',
-  source: '/lc-image.0.0.1.umd.js',
-  thumbnail: '',
-  data: [
-    {
-      version: '0.0.1',
-      source: '/lc-image.0.0.1.umd.js'
-    }
-  ]
-}]
 
 Promise.all(materialList.map(m => loadScript(m.source).then(res => {
   const app = createApp(App);

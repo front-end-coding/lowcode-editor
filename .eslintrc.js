@@ -22,5 +22,8 @@ module.exports = defineConfig({
         'vue/multi-word-component-names': 0,
       },
     }
-  ]
+  ],
+  rules: {
+    'max-attributes-per-line': ['0']
+  }
 })
