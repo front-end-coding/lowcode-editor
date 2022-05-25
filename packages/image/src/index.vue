@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import './index.less'
 
 const props = defineProps<{
   src: string;
@@ -7,5 +8,5 @@ const props = defineProps<{
 
 </script>
 <template>
-  <img :src="props.src">
+  <img :src="props.src" class="lc-image">
 </template>  

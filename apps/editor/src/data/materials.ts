@@ -36,3 +36,26 @@ export const materialList: IMaterial[] = [{
     }
   ]
 }]
+
+export const materialMap: { [key: string]: IMaterial } = materialList.reduce(
+  (prev, curr) => {
+    prev[curr.id] = curr;
+    return prev;
+  }, {})
+
+
+export function getMaterialEditProps(material: IMaterial) {
+  return (window as any)[material.name].editProps
+}
+
+export function getMaterialEditRenderFun(material: IMaterial) {
+  return (window as any)[material.name].render
+}
+
+export function getMaterialEditDefaultProps(material: IMaterial) {
+  const props = getMaterialEditProps(material);
+  return Object.keys(props).reduce((prev, key) => {
+    prev[key] = props[key].defaultValue;
+    return prev;
+  }, {})
+}

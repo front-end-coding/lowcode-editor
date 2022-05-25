@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import viteMocker from 'vite-plugin-mocker';
-import path from 'path'
+import path from 'path';
 
 export default defineConfig({
   plugins: [
