@@ -20,8 +20,12 @@ const onClick = (e: Event, m: IMaterial) => {
 </script>
 <template>
   <div class="editor-left">
-    <div v-for="item in materialList" :key="item.id" class="material"
-      @click="onClick($event, item)">
+    <div
+      v-for="item in materialList"
+      :key="item.id"
+      class="material"
+      @click="onClick($event, item)"
+    >
       <MaterialBlockVue :title="item.title" />
     </div>
   </div>

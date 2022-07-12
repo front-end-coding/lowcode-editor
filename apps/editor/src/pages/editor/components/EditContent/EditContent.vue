@@ -7,14 +7,20 @@ import './EditContent.less'
 
 const projectStore = useProjectStore();
 
-
 //封装的drag暴露的e只有height，width，x，y
-const onDragEnd = (e: any, id: string) => {
-  console.log('drag e', e, 123123123123, 'asdadasd', 'asdsadassdasdsadadsadadas', 'sdasdlalsdasd')
-  projectStore.changeElementStyle({
-    left: e.x,
-    top: e.y,
+const onDragEnd = (e: any) => {
+  console.log('draging', e)
+  let {x, y, ...rest} = e;
+  x = Math.max(0, x);
+  x = Math.min(x, 490-rest.width);
+  y = Math.max(0, y);
+  y = Math.min(y, 630-rest.height);
 
+  projectStore.changeElementStyle({
+    left: x,
+    top: y,
+    width: rest.width,
+    height: rest.height
   })
 }
 
@@ -28,12 +34,16 @@ const onDragEnd = (e: any, id: string) => {
       :key="item.id"
     >
       <VueDragResize
-        :active="true"
+        :active="projectStore.currentElement?.id=== item.id"
         :x="item.style.left || 0"
         :y="item.style.top || 0"
         :width="item.style.width"
         :height="item.style.height"
-        @drag-end="(e) => onDragEnd(e, item.id)"
+        :rotatable="false"
+        :immediate="true"
+        @click="projectStore.setCurrentElementId(item.id)"
+        @dragging="onDragEnd"
+        @resizing="onDragEnd"
       >
         <component
           :is="materialMap[item.mId].name"

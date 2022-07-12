@@ -8,5 +8,8 @@ const props = defineProps<{
 
 </script>
 <template>
-  <img :src="props.src" class="lc-image">
+  <img
+    :src="props.src"
+    class="lc-image"
+  >
 </template>  

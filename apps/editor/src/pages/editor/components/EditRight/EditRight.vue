@@ -15,15 +15,15 @@ const editProps = computed(() => {
 
 const elementProps = computed(() => {
   if (projectStore.currentElement === undefined) {
-    return undefined
+    return {}
   }
   return projectStore.currentElement.props
 })
 
 
-const onPropsChange = (e: Event) => {
+const onPropsChange = (e: Event, key: string) => {
   projectStore.changeElementProps({
-    src: (e.target as HTMLInputElement).value
+    [key]: (e.target as HTMLInputElement).value
   })
   console.log(projectStore.currentElement)
 };
@@ -33,7 +33,28 @@ const isShow = computed(() => editProps.value !== undefined)
 </script>
 <template>
   <div class="editor-right">
-    <input v-if="isShow" type="text" :value="elementProps.src" @change="onPropsChange($event)">
+    {{ elementProps }}
+    <div
+      v-for="key in Object.keys(elementProps)"
+      :key="key"
+    >
+      <input
+        v-if="elementProps[key].type === 'string'"
+        :value="elementProps[key].defaultValue"
+        @change="onPropsChange($event, key)"
+      >
+      <input
+        v-if="elementProps[key].type === 'number'"
+        type="number"
+        :value="elementProps[key].defaultValue"
+        @change="onPropsChange($event ,key)"
+      >
+      <input
+        v-if="elementProps[key].type === 'color'"
+        :value="elementProps[key].defaultValue"
+        @change="onPropsChange($event, key)"
+      >
+    </div>  
   </div>
 </template>
 

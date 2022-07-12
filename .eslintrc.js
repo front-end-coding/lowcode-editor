@@ -44,4 +44,7 @@ module.exports = defineConfig({
         parser: '@typescript-eslint/parser',
         ecmaVersion: 2020,
     },
+    rules: {
+        "vue/multi-word-component-names": 0,
+    }
 })

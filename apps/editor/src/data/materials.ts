@@ -20,19 +20,19 @@ export const materialList: IMaterial[] = [{
 },
 {
   id: 2,
-  name: 'lcImage',
-  title: '图片2',
+  name: 'lcTitle',
+  title: '标题1',
   type: 'component',
   categoty: {
     name: '基础组件'
   },
   version: '0.0.1',
-  source: '/lc-image.0.0.1.umd.js',
+  source: '/lc-title.0.0.1.umd.js',
   thumbnail: '',
   data: [
     {
       version: '0.0.1',
-      source: '/lc-image.0.0.1.umd.js'
+      source: '/lc-title.0.0.1.umd.js'
     }
   ]
 }]
@@ -55,7 +55,7 @@ export function getMaterialEditRenderFun(material: IMaterial) {
 export function getMaterialEditDefaultProps(material: IMaterial) {
   const props = getMaterialEditProps(material);
   return Object.keys(props).reduce((prev, key) => {
-    prev[key] = props[key].defaultValue;
+    prev[key] = props[key].defaultValue
     return prev;
   }, {})
 }

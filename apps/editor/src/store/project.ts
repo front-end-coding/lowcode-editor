@@ -18,10 +18,21 @@ export const useProjectStore = defineStore('project', () => {
   )
 
   const currElementIndex = ref(0)
+  const currentElementId = ref();
 
-  const currentElement = computed(
-    () => currentPageElements.value[currElementIndex.value]
-  );
+  const currentElement = computed(() => {
+    if (currentElementId.value) {
+      return p
+        .getPageByIndex(currentPageIndex.value)
+        .getElementById(currentElementId.value)
+    }
+    // 默认返回第一个
+    return currentPageElements.value[currElementIndex.value]
+  });
+
+  function setCurrentElementId(id: string) {
+    currentElementId.value = id
+  }
 
   function changeElementProps(props: Record<string, any>) {
     const element = p.getPageByIndex(currentPageIndex.value).getElementById(currentElement.value.id);
@@ -33,17 +44,19 @@ export const useProjectStore = defineStore('project', () => {
   }
 
   function changeElementStyle(style: Record<string, any>) {
-    const element = p.getPageByIndex(currentPageIndex.value).getElementById(currentElement.value.id);
+    const element = p
+      .getPageByIndex(currentPageIndex.value)
+      .getElementById(currentElement.value.id);
     element.style = {
       ...element.style,
-      ...style
-    }
+      ...style,
+    };
+    console.log(999, style)
     project.value = p.getJson();
   }
 
-
-
   function addElement(ele: PageElement) {
+    currentElementId.value = ele.id;
     p.getPageByIndex(currentPageIndex.value).addElement(ele);
     // 更新数据
     project.value = p.getJson();
@@ -54,9 +67,11 @@ export const useProjectStore = defineStore('project', () => {
     currentPage,
     currentPageElements,
     currentElement,
+    currentElementId,
 
     addElement,
     changeElementProps,
-    changeElementStyle
+    changeElementStyle,
+    setCurrentElementId
   }
 })
