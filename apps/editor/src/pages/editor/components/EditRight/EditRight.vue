@@ -8,16 +8,9 @@ const projectStore = useProjectStore();
 
 const editProps = computed(() => {
   if (projectStore.currentElement === undefined) {
-    return undefined
-  }
-  return getMaterialEditProps(materialMap[projectStore.currentElement?.mId])
-})
-
-const elementProps = computed(() => {
-  if (projectStore.currentElement === undefined) {
     return {}
   }
-  return projectStore.currentElement.props
+  return getMaterialEditProps(materialMap[projectStore.currentElement?.mId])
 })
 
 
@@ -33,25 +26,25 @@ const isShow = computed(() => editProps.value !== undefined)
 </script>
 <template>
   <div class="editor-right">
-    {{ elementProps }}
+    {{ editProps }}
     <div
-      v-for="key in Object.keys(elementProps)"
+      v-for="key in Object.keys(editProps)"
       :key="key"
     >
       <input
-        v-if="elementProps[key].type === 'string'"
-        :value="elementProps[key].defaultValue"
+        v-if="editProps[key].type === 'string'"
+        :value="editProps[key].defaultValue"
         @change="onPropsChange($event, key)"
       >
       <input
-        v-if="elementProps[key].type === 'number'"
+        v-if="editProps[key].type === 'number'"
         type="number"
-        :value="elementProps[key].defaultValue"
+        :value="editProps[key].defaultValue"
         @change="onPropsChange($event ,key)"
       >
       <input
-        v-if="elementProps[key].type === 'color'"
-        :value="elementProps[key].defaultValue"
+        v-if="editProps[key].type === 'color'"
+        :value="editProps[key].defaultValue"
         @change="onPropsChange($event, key)"
       >
     </div>  

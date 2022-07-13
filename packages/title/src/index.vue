@@ -12,7 +12,7 @@ const props = defineProps<{
     class="lc-title"
     :style="{
       color: props.color,
-      fontSize: props.size
+      fontSize: props.size + 'px'
     }"
   >
     {{ props.title }}

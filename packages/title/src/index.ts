@@ -8,10 +8,10 @@ export default {
       defaultValue: 'hello world'
     },
     color: {
-      type: 'string',
+      type: 'color',
       defaultValue: '#333'
     },
-    fontSize: {
+    size: {
       type: 'number',
       defaultValue: 16
     }
