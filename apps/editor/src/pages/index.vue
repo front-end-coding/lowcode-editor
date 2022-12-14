@@ -1,9 +1,8 @@
 <script setup lang="ts">
+import Editor from './editor/index.vue'
 </script>
 <template>
-  <div>
-    <h1>index. vue</h1>
-  </div>
+  <Editor />
 </template>
 
 

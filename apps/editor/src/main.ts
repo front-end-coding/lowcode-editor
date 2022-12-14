@@ -1,19 +1,15 @@
-import { createApp } from 'vue';
-import App from './App.vue';
-import { loadMaterial } from './utils';
 import { router } from './router'
 import { createPinia } from 'pinia'
 import './main.less'
-import { materialList, getMaterialEditRenderFun } from './data'
-const pinia = createPinia();
+import app from './app'
 
-loadMaterial(materialList).then(() => {
-  const app = createApp(App);
-  materialList.forEach((m) => {
-    const renderFn = getMaterialEditRenderFun(m)
-    app.component(m.name, renderFn)
-  })
-  app.use(router);
-  app.use(pinia);
-  app.mount('#app')
-})
+
+const pinia = createPinia();
+// 这里需要改成异步加载
+// materialList.forEach((m) => {
+//   const renderFn = getMaterialRenderFun(m)
+//   app.component(m.name, renderFn)
+// })
+app.use(router);
+app.use(pinia);
+app.mount('#app')

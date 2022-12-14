@@ -10,5 +10,7 @@ const props = defineProps<IProps>()
 </script>
 
 <template>
-  <div class="material-block">{{ props.title }}</div>
+  <div class="material-block">
+    {{ props.title }}
+  </div>
 </template>

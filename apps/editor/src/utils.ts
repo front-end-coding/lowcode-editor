@@ -34,6 +34,18 @@ export function loadCss(src: string) {
 }
 
 
-export function loadMaterial(materials: IMaterial[]) {
-  return Promise.all(materials.map((m) => loadScript(m.source)))
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
 }
+
+
+export async function loadMaterial(materials: IMaterial) {
+  // 模拟异步请求组件
+  await delay(2000);
+  return loadScript(materials.source)
+}
+
+export function loadMaterials(materials: IMaterial[]) {
+  return Promise.all(materials.map((m) => loadMaterial(m)))
+}
+

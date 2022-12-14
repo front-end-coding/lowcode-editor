@@ -15,6 +15,7 @@ const onClick = (e: Event, m: IMaterial) => {
   ele.mVersion = m.version;
   ele.props = getMaterialEditDefaultProps(m);
   projectStore.addElement(ele);
+  projectStore.load(m);
 }
 
 </script>
