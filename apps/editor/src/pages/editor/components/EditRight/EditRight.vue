@@ -3,7 +3,6 @@ import { computed } from 'vue'
 import { useProjectStore } from '@/store'
 import { getMaterialEditProps, materialMap } from '@/data'
 import './EditRight.less'
-import { Page } from '../../../../../../../packages/shared/src/project/page';
 
 const projectStore = useProjectStore();
 
