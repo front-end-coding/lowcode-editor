@@ -41,7 +41,7 @@ function delay(ms: number) {
 
 export async function loadMaterial(materials: IMaterial) {
   // 模拟异步请求组件
-  await delay(2000);
+  await delay(Math.random() * 1000);
   return loadScript(materials.source)
 }
 

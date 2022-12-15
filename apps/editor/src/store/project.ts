@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { Project, IProject, PageElement } from '@lc2048/shared'
+import { Project, IProject, PageElement, Page } from '@lc2048/shared'
 import { ref, computed } from 'vue'
 import { IMaterial } from '../../../../packages/shared/src/material/index';
 import { loadMaterial } from '../utils';
@@ -36,7 +36,7 @@ export const useProjectStore = defineStore('project', () => {
     return currentPageElements.value[currElementIndex.value]
   });
 
-  function setCurrentElementId(id: string) {
+  function setCurrentElement(id: string) {
     currentElementId.value = id
   }
 
@@ -57,7 +57,6 @@ export const useProjectStore = defineStore('project', () => {
       ...element.style,
       ...style,
     };
-    // console.log('drag', style)
     project.value = p.getJson();
   }
 
@@ -85,7 +84,26 @@ export const useProjectStore = defineStore('project', () => {
       [material.id]: material
     }
     changeElementProps(getMaterialEditDefaultProps(material))
+  }
 
+  function saveProject() {
+    localStorage.setItem('__project', JSON.stringify(p.getJson()))
+  }
+
+  function setCurrentPageIndex(index: number) {
+    currentPageIndex.value = index;
+  }
+
+  function addPage() {
+    const page = Page.create();
+    p.addPage(page);
+    project.value = p.getJson();
+  }
+
+  function changePageName(name: string) {
+    const page = p.getPageByIndex(currentPageIndex.value);
+    page.name = name;
+    project.value = p.getJson();
   }
 
   return {
@@ -94,12 +112,18 @@ export const useProjectStore = defineStore('project', () => {
     currentPageElements,
     currentElement,
     currentElementId,
+    currentPageIndex,
 
+
+    changePageName,
+    addPage,
+    setCurrentPageIndex,
     addElement,
     changeElementProps,
     changeElementStyle,
-    setCurrentElementId,
+    setCurrentElement,
     load,
-    isLoaded
+    isLoaded,
+    saveProject,
   }
 })

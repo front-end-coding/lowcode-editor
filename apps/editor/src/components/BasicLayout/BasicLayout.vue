@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import BasicHeader from '../BasicHeader/BasicHeader.vue'
-  import './BasicLayout.less'
+import './BasicLayout.less'
 </script>
+
 <template>
   <div class="basic-layout">
     <div class="basic-layout-header">

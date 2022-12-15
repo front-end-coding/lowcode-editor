@@ -21,19 +21,26 @@ const onPropsChange = (e: Event, key: string) => {
   console.log(projectStore.currentElement)
 };
 
+const onPageNameChange = (e: Event)  => {
+  const name = (e.target as HTMLInputElement).value;
+  projectStore.changePageName(name)
+}
 
-const isShow = computed(() => editProps.value !== undefined)
+
 </script>
 <template>
   <div class="editor-right">
     <div v-if="projectStore.currentElement === undefined">
-      由于组件异步加载，所以未出现任何props
+      <input
+        :value="projectStore.currentPage.name"
+        @input="onPageNameChange($event)"
+      >
     </div>
     <div v-else-if="!projectStore.isLoaded(projectStore.currentElement.mId)">
       loading，模拟异步加载，加载组件中
     </div>
     <div v-else>
-      {{ editProps }} 
+      <!-- {{ editProps }}  -->
       <div
         v-for="key in Object.keys(editProps)"
         :key="key"

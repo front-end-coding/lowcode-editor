@@ -2,7 +2,7 @@
 import './EditLayout.less'
 import EditLeft from '../EditLeft/EditLeft.vue'
 import EditRight from '../EditRight/EditRight.vue'
-import EditContent from '../EditContent/EditContent.vue';
+import EditContent from '../EditContent/EditorContent.vue';
 
 </script>
 <template>

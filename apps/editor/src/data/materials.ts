@@ -3,7 +3,7 @@ import { IMaterial } from '@lc2048/shared'
 export const materialList: IMaterial[] = [{
   id: 1,
   name: 'lcImage',
-  title: '图片1',
+  title: '图片',
   type: 'component',
   categoty: {
     name: '基础组件'
@@ -21,7 +21,7 @@ export const materialList: IMaterial[] = [{
 {
   id: 2,
   name: 'lcTitle',
-  title: '标题1',
+  title: '标题',
   type: 'component',
   categoty: {
     name: '基础组件'
