@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import { useProjectStore } from '@/store'
+import { useProjectStore, useEventStore } from '@/store'
 import { getMaterialEditProps, materialMap } from '@/data'
 import './EditRight.less'
 
 const projectStore = useProjectStore();
+const eventStore = useEventStore();
 
 const editProps = computed(() => {
   if (projectStore.currentElement === undefined) {
@@ -26,6 +27,14 @@ const onPageNameChange = (e: Event)  => {
   projectStore.changePageName(name)
 }
 
+const onEventSave = () => {
+  eventStore.saveEvent(projectStore.currentPageIndex, projectStore.currentElementId)
+}
+
+function onEventArgsChange(e: Event, index: number) {
+  const ev = e.target as HTMLInputElement;
+  eventStore.saveArgs(ev.value, index);
+}
 
 </script>
 <template>
@@ -61,6 +70,38 @@ const onPageNameChange = (e: Event)  => {
           :value="editProps[key].defaultValue"
           @change="onPropsChange($event, key)"
         >
+        <div>
+          <select
+            :value="eventStore.currentType"
+            @change="(e) => eventStore.onTypeChange((e.target as HTMLSelectElement).value)"
+          >
+            <option
+              v-for="item in eventStore.editorEvents"
+              :key="item.type"
+            >
+              {{ item.type }}
+            </option>
+          </select>
+          <select>
+            <option
+              v-for="item in eventStore.currentEvents"
+              :key="item.name"
+            >
+              {{ item.name }}
+            </option>
+          </select>
+          <div v-if="eventStore.currentEventArgs">
+            <div
+              v-for="(item, index) in eventStore.currentEventArgs"
+              :key="index"
+            >
+              <input @input="onEventArgsChange($event, index)"> 
+            </div>
+          </div>
+          <button @click="onEventSave">
+            save
+          </button>
+        </div>
       </div> 
     </div>
   </div>

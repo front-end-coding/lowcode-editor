@@ -9,7 +9,7 @@ import { getMaterialEditDefaultProps } from '../data/materials';
 
 
 // {}可以理解为对象，function或者实例都不可被proxy代理
-const p = Project.create();
+export const p = Project.create();
 
 export const useProjectStore = defineStore('project', () => {
   const materials = ref<Record<string, IMaterial>>({})
