@@ -7,6 +7,8 @@ import 'vue-drag-resize-next/lib/style.css';
 import { useRouter } from 'vue-router';
 import { onMounted, ref } from 'vue';
 import { IElement } from '@lc2048/shared';
+import { ElButton } from 'element-plus'
+
 
 const projectStore = useProjectStore();
 const route = useRouter();
@@ -23,11 +25,13 @@ onMounted(() => {
 
 function onDragEnd(ev: any) {
   const { x, y, ...ret } = ev;
-
   const width = Math.min(pageWidth, ret.width);
   const height = Math.min(pageHeight, ret.height);
+
   const left = Math.min(Math.max(x, 0), pageWidth - ret.width);
   const top = Math.min(Math.max(y, 0), pageHeight - ret.height);
+  console.log('resize',pageWidth, ret.width, width)
+
   projectStore.changeElementStyle({
     left,
     top,
@@ -55,17 +59,22 @@ function onPageClick(index: number) {
 function onElementClick(ele: IElement) {
   projectStore.setCurrentElement(ele.id);
 }
+
+function handleDragElementClick(id: string) {
+  projectStore.setCurrentElementData(id);
+}
+
 </script>
 
 <template>
   <div class="editor-content">
     <div class="editor-content-header">
-      <button @click="onSave">
+      <el-button @click="onSave">
         保存
-      </button>
-      <button @click="onPreview">
+      </el-button>
+      <el-button @click="onPreview">
         预览
-      </button>
+      </el-button>
     </div>
     <div class="editor-body">
       <div class="editor-body-pages">
@@ -78,12 +87,12 @@ function onElementClick(ele: IElement) {
         >
           {{ item.name }}
         </div>
-        <div
+        <el-button
           class="add"
           @click="onPageAdd"
         >
           添加页面
-        </div>
+        </el-button>
       </div>
       <div class="editor-body-elements">
         <div
@@ -106,13 +115,13 @@ function onElementClick(ele: IElement) {
         >
           <VueDragResize
             :active="projectStore.currentElement?.id === item.id"
-            :x="item.style.left || 0"
-            :y="item.style.top || 0"
+            :x="Math.max(item.style.left || 0, 0)"
+            :y="Math.max(item.style.top || 0, 0)"
             :width="item.style.width"
             :height="item.style.height"
             :rotatable="false"
             :immediate="true"
-            @click="projectStore.setCurrentElement(item.id)"
+            @click="handleDragElementClick(item.id)"
             @dragging="onDragEnd"
             @resizing="onDragEnd"
           >

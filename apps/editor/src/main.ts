@@ -2,6 +2,7 @@ import { router } from './router'
 import { createPinia } from 'pinia'
 import './main.less'
 import app from './app'
+import 'element-plus/dist/index.css'
 
 
 const pinia = createPinia();

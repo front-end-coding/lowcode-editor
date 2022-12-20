@@ -45,7 +45,17 @@ export const materialMap: { [key: string]: IMaterial } = materialList.reduce(
 
 
 export function getMaterialEditProps(material: IMaterial) {
-  return (window as any)[material.name]?.editProps
+  return (window as any)[material.name]?.editProps;
+}
+
+export function getMaterialEditPropsData(material: IMaterial) {
+  const props = (window as any)[material.name]?.editProps;
+  return Object.keys(props).reduce((prev, curr) => {
+    if (!prev[curr]) {
+      prev[curr] = props[curr]?.defaultValue
+    }
+    return prev;
+  }, {})
 }
 
 export function getMaterialRenderFun(material: IMaterial) {

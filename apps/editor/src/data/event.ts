@@ -5,9 +5,9 @@ const globalEmitter = new TinyEmitter();
 const win = window as any;
 win.globalEmitter = globalEmitter;
 
-globalEmitter.on('common:link', (...args) => {
-  console.log(args);
-  if (args.length === 1) {
+globalEmitter.on('common:link', args => {
+  console.log('args', args, typeof args);
+  if (Array.isArray(args) && args.length === 1) {
     window.open(args[0], '_blank')
   }
 });

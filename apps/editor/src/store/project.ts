@@ -1,12 +1,11 @@
 import { defineStore } from 'pinia'
-import { Project, IProject, PageElement, Page } from '@lc2048/shared'
+import { Project, IProject, PageElement, Page, IElement } from '@lc2048/shared'
 import { ref, computed } from 'vue'
 import { IMaterial } from '../../../../packages/shared/src/material/index';
 import { loadMaterial } from '../utils';
 import { getMaterialRenderFun } from '@/data'
 import app from '../app'
 import { getMaterialEditDefaultProps } from '../data/materials';
-
 
 // {}可以理解为对象，function或者实例都不可被proxy代理
 export const p = Project.create();
@@ -23,8 +22,11 @@ export const useProjectStore = defineStore('project', () => {
     () => currentPage.value.elements
   )
 
-  const currElementIndex = ref(0)
+  const currElementIndex = ref(0);
   const currentElementId = ref();
+  const currentElementName = ref('New Element');
+  const currentElementPropsData = ref({});
+
 
   const currentElement = computed(() => {
     if (currentElementId.value) {
@@ -32,6 +34,7 @@ export const useProjectStore = defineStore('project', () => {
         .getPageByIndex(currentPageIndex.value)
         .getElementById(currentElementId.value)
     }
+
     // 默认返回第一个
     return currentPageElements.value[currElementIndex.value]
   });
@@ -40,12 +43,17 @@ export const useProjectStore = defineStore('project', () => {
     currentElementId.value = id
   }
 
+  function setCurrentElementPropsData(props) {
+    currentElementPropsData.value = props
+  }
+
   function changeElementProps(props: Record<string, any>) {
     const element = p.getPageByIndex(currentPageIndex.value).getElementById(currentElement.value.id);
     element.props = {
-      ...element.props,
+      ...element?.props,
       ...props
     }
+    setCurrentElementPropsData(element.props)
     project.value = p.getJson();
   }
 
@@ -106,6 +114,28 @@ export const useProjectStore = defineStore('project', () => {
     project.value = p.getJson();
   }
 
+  function changeElementName(name: string) {
+    const element = p
+      .getPageByIndex(currentPageIndex.value)
+      .getElementById(currentElement.value.id);
+
+    element.name = name;
+    project.value = p.getJson();
+  }
+
+  function setCurrentElementName() {
+    const element = p
+      .getPageByIndex(currentPageIndex.value)
+      .getElementById(currentElement.value.id);
+    currentElementName.value = element.name
+  }
+
+  function setCurrentElementData(id) {
+    setCurrentElement(id);
+    setCurrentElementName();
+    setCurrentElementPropsData(currentElement.value.props)
+  }
+
   return {
     project,
     currentPage,
@@ -113,9 +143,12 @@ export const useProjectStore = defineStore('project', () => {
     currentElement,
     currentElementId,
     currentPageIndex,
+    currentElementPropsData,
+    currentElementName,
 
 
     changePageName,
+    changeElementName,
     addPage,
     setCurrentPageIndex,
     addElement,
@@ -125,5 +158,6 @@ export const useProjectStore = defineStore('project', () => {
     load,
     isLoaded,
     saveProject,
+    setCurrentElementData,
   }
 })

@@ -10,7 +10,8 @@ export const useEventStore = defineStore('eventStore', () => {
   const currentEvents = computed(() => editorEvents.find((item) => item.type === currentType.value).events);
 
   const currentEventType = ref<string>(currentEvents.value[0].name);
-  const currentEventArgs = computed(() => currentEvents.value.find((item) => item.name === currentEventType.value).args)
+  const currentEventArgs = computed(() => currentEvents.value.find((item) => item.name === currentEventType.value)?.args)
+
 
   const onTypeChange = (type: string) => {
     currentType.value = type;
@@ -37,6 +38,7 @@ export const useEventStore = defineStore('eventStore', () => {
     editorEvents,
     currentEventType,
     currentEventArgs,
+    currentEventArgValues,
 
     onTypeChange,
     saveEvent,

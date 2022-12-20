@@ -9,7 +9,7 @@ const props = defineProps<{
 
 function onClick() {
   const win = window as any;
-  win.globalEmitter.emit('common:link', props.events['common:link'])
+  win.globalEmitter.emit('common:link', props.events?.['common:link'] ?? '')
 }
 
 </script>
