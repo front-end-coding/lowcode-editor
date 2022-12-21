@@ -28,7 +28,10 @@ const onClick = (e: Event, m: IMaterial) => {
       class="material"
       @click="onClick($event, item)"
     >
-      <MaterialBlockVue :title="item.title" />
+      <MaterialBlockVue
+        :title="item.title"
+        :thumbnail="item.thumbnail"
+      />
     </div>
   </div>
 </template>

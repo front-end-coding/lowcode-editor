@@ -10,7 +10,7 @@ export const materialList: IMaterial[] = [{
   },
   version: '0.0.1',
   source: '/lc-image.0.0.1.umd.js',
-  thumbnail: '',
+  thumbnail: 'https://m.hellobike.com/resource/helloyun/12395/Ggu8v_img.svg',
   data: [
     {
       version: '0.0.1',
@@ -28,7 +28,7 @@ export const materialList: IMaterial[] = [{
   },
   version: '0.0.1',
   source: '/lc-title.0.0.1.umd.js',
-  thumbnail: '',
+  thumbnail: 'https://m.hellobike.com/resource/helloyun/12395/JDZTxqZt4X.svg',
   data: [
     {
       version: '0.0.1',

@@ -52,6 +52,12 @@ export class Page implements IPage {
       this._elements.splice(index, 1);
     }
   }
+  public removeElementById(id: string) {
+    const index = this._elements.findIndex((element) => element.id === id)
+    if (index >= 0) {
+      this._elements.splice(index, 1);
+    }
+  }
 
   public insertElement(index: number, element: PageElement) {
     this._elements.splice(index, 0, element);

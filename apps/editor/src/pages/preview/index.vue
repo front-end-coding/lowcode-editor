@@ -2,6 +2,7 @@
 import { IProject } from '@lc2048/shared'
 import { materialMap } from '@/data'
 import { useMaterial } from './material'
+import './index.less'
 
 const { loading, pages } = useMaterial()
 </script>

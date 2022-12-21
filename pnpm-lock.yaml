@@ -41,6 +41,7 @@ importers:
     specifiers:
       '@lc2048/shared': workspace:^0.0.1
       element-plus: ^2.2.27
+      lodash-es: ^4.17.21
       pinia: ^2.0.14
       tiny-emitter: ^2.1.0
       vue-drag-resize-next: ^0.0.2-alpha.3
@@ -48,6 +49,7 @@ importers:
     dependencies:
       '@lc2048/shared': link:../../packages/shared
       element-plus: 2.2.27
+      lodash-es: 4.17.21
       pinia: 2.0.14
       tiny-emitter: 2.1.0
       vue-drag-resize-next: 0.0.2-alpha.3

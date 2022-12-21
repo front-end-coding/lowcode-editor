@@ -6,6 +6,8 @@ import { loadMaterial } from '../utils';
 import { getMaterialRenderFun } from '@/data'
 import app from '../app'
 import { getMaterialEditDefaultProps } from '../data/materials';
+import { cloneDeep } from 'lodash-es'
+import { uuid } from '@lc2048/shared';
 
 // {}可以理解为对象，function或者实例都不可被proxy代理
 export const p = Project.create();
@@ -22,6 +24,7 @@ export const useProjectStore = defineStore('project', () => {
     () => currentPage.value.elements
   )
 
+  // 对外暴露的双向绑定的数据
   const currElementIndex = ref(0);
   const currentElementId = ref();
   const currentElementName = ref('New Element');
@@ -34,7 +37,6 @@ export const useProjectStore = defineStore('project', () => {
         .getPageByIndex(currentPageIndex.value)
         .getElementById(currentElementId.value)
     }
-
     // 默认返回第一个
     return currentPageElements.value[currElementIndex.value]
   });
@@ -136,6 +138,20 @@ export const useProjectStore = defineStore('project', () => {
     setCurrentElementPropsData(currentElement.value.props)
   }
 
+  function deleteElement() {
+    const page = p.getPageByIndex(currentPageIndex.value)
+    page.removeElementById(currentElement.value.id)
+    project.value = p.getJson();
+  }
+
+  function copyElement() {
+    const element = cloneDeep(currentElement.value)
+    element.id = uuid()
+    const page = p.getPageByIndex(currentPageIndex.value);
+    page.addElement(element);
+    project.value = p.getJson();
+  }
+
   return {
     project,
     currentPage,
@@ -159,5 +175,7 @@ export const useProjectStore = defineStore('project', () => {
     isLoaded,
     saveProject,
     setCurrentElementData,
+    deleteElement,
+    copyElement
   }
 })
