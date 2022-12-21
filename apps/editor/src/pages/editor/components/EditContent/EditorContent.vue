@@ -36,9 +36,9 @@ function onDragEnd(ev: any) {
   const width = Math.min(pageWidth, ret.width);
   const height = Math.min(pageHeight, ret.height);
 
-  const left = Math.min(Math.max(x, 0), pageWidth - ret.width);
-  const top = Math.min(Math.max(y, 0), pageHeight - ret.height);
-  // console.log('resize',pageWidth, ret.width, width)
+  const left = Math.min(Math.max(x, 0), pageWidth - width);
+  const top = Math.min(Math.max(y, 0), pageHeight - height);
+  // console.log('resize',pageWidth, ret.width, left, top)
 
   projectStore.changeElementStyle({
     left,
@@ -65,7 +65,8 @@ function onPageClick(index: number) {
 }
 
 function onElementClick(ele: IElement) {
-  projectStore.setCurrentElement(ele.id);
+  // projectStore.setCurrentElement(ele.id);
+  projectStore.setCurrentElementData(ele.id)
 }
 
 function handleDragElementClick(e: Event, id: string) {
