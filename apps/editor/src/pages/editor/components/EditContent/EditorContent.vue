@@ -69,9 +69,8 @@ function onElementClick(ele: IElement) {
   projectStore.setCurrentElementData(ele.id)
 }
 
-function handleDragElementClick(e: Event, id: string) {
+function handleDragElementClick(id: string) {
   projectStore.setCurrentElementData(id);
-  e.preventDefault();
 }
 
 function mouseRightclick(e: MouseEvent, item: IElement){
@@ -164,7 +163,7 @@ function onConextMenuSelect(type) {
             :height="item.style.height"
             :rotatable="false"
             :immediate="true"
-            @click="(e) => handleDragElementClick(e, item.id)"
+            @click="handleDragElementClick(item.id)"
             @dragging="onDragEnd"
             @resizing="onDragEnd"
           >

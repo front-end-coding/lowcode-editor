@@ -1,11 +1,14 @@
 <script setup lang="ts">
-import Editor from './editor/index.vue'
+import { useRouter } from 'vue-router';
+import { onMounted } from 'vue';
+
+const route = useRouter()
+
+onMounted(() => {
+  route.push('./editor')
+})
+
 </script>
 <template>
-  <Editor />
+  hello index
 </template>
-
-
-<style scoped>
-
-</style>
