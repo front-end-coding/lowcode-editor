@@ -8,9 +8,11 @@ import app from '../app'
 import { getMaterialEditDefaultProps } from '../data/materials';
 import { cloneDeep } from 'lodash-es'
 import { uuid } from '@lc2048/shared';
+import { useEventStore } from './event';
 
 // {}可以理解为对象，function或者实例都不可被proxy代理
 export const p = Project.create();
+const eventStore = useEventStore();
 
 export const useProjectStore = defineStore('project', () => {
   const materials = ref<Record<string, IMaterial>>({})
@@ -71,10 +73,11 @@ export const useProjectStore = defineStore('project', () => {
   }
 
   function addElement(ele: PageElement) {
-    currentElementId.value = ele.id;
     p.getPageByIndex(currentPageIndex.value).addElement(ele);
+    setCurrentElementData(ele.id)
     // 更新数据
     project.value = p.getJson();
+
   }
 
   function isLoaded(mid) {
@@ -132,10 +135,18 @@ export const useProjectStore = defineStore('project', () => {
     currentElementName.value = element.name
   }
 
+  function setCurrentElementEventArgsValues() {
+    const key = `${eventStore.currentType}:${eventStore.currentEventType}`
+    const eventProps = currentElement.value?.props?.events?.[key] || [];
+    eventStore.currentEventArgValues = eventProps;
+  }
+
+
   function setCurrentElementData(id) {
     setCurrentElement(id);
     setCurrentElementName();
-    setCurrentElementPropsData(currentElement.value.props)
+    setCurrentElementPropsData(currentElement.value.props);
+    setCurrentElementEventArgsValues()
   }
 
   function deleteElement() {

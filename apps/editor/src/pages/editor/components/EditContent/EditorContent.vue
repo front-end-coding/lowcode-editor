@@ -65,8 +65,7 @@ function onPageClick(index: number) {
 }
 
 function onElementClick(ele: IElement) {
-  // projectStore.setCurrentElement(ele.id);
-  projectStore.setCurrentElementData(ele.id)
+  projectStore.setCurrentElementData(ele.id);
 }
 
 function handleDragElementClick(id: string) {

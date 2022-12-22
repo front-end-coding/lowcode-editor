@@ -9,7 +9,6 @@ const props = defineProps<{
 
 function onClick() {
   const win = window as any;
-  console.log('元素内部先触发')
   win.globalEmitter.emit('common:link', props.events?.['common:link'] ?? '')
 }
 
